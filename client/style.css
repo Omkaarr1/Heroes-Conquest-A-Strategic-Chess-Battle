@@ -1,0 +1,161 @@
+/* Filename: client/style.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #333;
+    color: #fff;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+#game-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+}
+
+#controls-container {
+    width: 200px;
+    margin-right: 20px;
+}
+
+#board-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+}
+
+#board {
+    display: grid;
+    grid-template-columns: repeat(5, 50px);
+    grid-template-rows: repeat(5, 50px);
+    gap: 5px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+#user-label,
+#ai-label {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+.cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #444;
+    border: 1px solid #777;
+    width: 50px;
+    height: 50px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.cell:hover {
+    background-color: #555;
+}
+
+/* Controls and Buttons */
+#controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#direction-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 100px);
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#direction-buttons button {
+    background-color: #555;
+    color: #fff;
+    border: 2px solid #777;
+    border-radius: 8px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: 14px;
+    text-align: center;
+}
+
+#direction-buttons button:hover {
+    background-color: #666;
+    transform: scale(1.05);
+}
+
+#direction-buttons button:active {
+    background-color: #444;
+}
+
+#submit-move {
+    background-color: #ff4500;
+    color: #fff;
+    border: 2px solid #ff5722;
+    border-radius: 8px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: 16px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+#submit-move:hover {
+    background-color: #ff5722;
+    transform: scale(1.05);
+}
+
+#submit-move:active {
+    background-color: #ff3300;
+}
+
+/* Move History */
+#move-history-container {
+    width: 200px;
+    margin-left: 20px;
+}
+
+#move-history {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#move-history li {
+    margin-bottom: 5px;
+    padding: 5px;
+    background-color: #555;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Piece Movement Guide */
+#piece-movement-guide {
+    margin-top: 20px;
+    width: 100%;
+    max-width: 1000px;
+}
+
+#piece-movement-guide ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#piece-movement-guide li {
+    margin-bottom: 5px;
+}

@@ -1,0 +1,52 @@
+<!-- Filename: client/index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chess-like Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Advanced Chess-like Game</h1>
+    <div id="game-container">
+        <div id="controls-container">
+            <div id="controls">
+                <p>Current Player: <span id="current-player">A</span></p>
+                <div id="direction-buttons">
+                    <button onclick="selectMove('L', this)">Left</button>
+                    <button onclick="selectMove('R', this)">Right</button>
+                    <button onclick="selectMove('F', this)">Forward</button>
+                    <button onclick="selectMove('B', this)">Backward</button>
+                    <button onclick="selectMove('FL', this)">Forward-Left</button>
+                    <button onclick="selectMove('FR', this)">Forward-Right</button>
+                    <button onclick="selectMove('BL', this)">Backward-Left</button>
+                    <button onclick="selectMove('BR', this)">Backward-Right</button>
+                </div>
+                <button id="submit-move" onclick="submitMove()">Submit Move</button>
+                <p>Selected: <span id="selected-piece">None</span></p>
+            </div>
+        </div>
+        <div id="board-container">
+            <p id="user-label">User</p>
+            <div id="board"></div>
+            <p id="ai-label">AI</p>
+        </div>
+        <div id="move-history-container">
+            <h3>Move History</h3>
+            <ul id="move-history"></ul>
+        </div>
+    </div>
+    <div id="piece-movement-guide">
+        <h3>Piece Movement Guide</h3>
+        <ul>
+            <li>Pawn (P): Moves 1 step in any direction (⬆️⬇️⬅️➡️)</li>
+            <li>Hero1 (H1): Moves 2 steps in any direction (⬆️⬇️⬅️➡️)</li>
+            <li>Hero2 (H2): Moves 2 steps diagonally (↖️↗️↙️↘️)</li>
+            <li>Hero3 (H3): Moves 2 steps in one direction, then 1 step perpendicular (All directions)</li>
+        </ul>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
