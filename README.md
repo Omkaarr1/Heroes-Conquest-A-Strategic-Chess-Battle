@@ -45,7 +45,7 @@ Welcome to **Heroes' Conquest: A Strategic Chess Battle**, a unique and advanced
    pip install websockets
    Run the WebSocket server:
    ```
-3. Goto http://localhost"8000 to access the game.
+3. Goto http://localhost:8000 to access the game.
 
 ## 📖 How to Play
 
