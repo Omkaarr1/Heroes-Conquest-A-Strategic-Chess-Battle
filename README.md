@@ -2,6 +2,9 @@
 
 Welcome to **Heroes' Conquest: A Strategic Chess Battle**, a unique and advanced chess-like game that offers a fresh twist on traditional chess mechanics. Engage in a turn-based strategy game where you command a set of powerful heroes and pawns, each with distinct abilities, to outmaneuver and defeat your opponent.
 
+![image](https://github.com/user-attachments/assets/fdc8ff14-8eaa-44e3-a8f3-f3a3de490c6b)
+
+
 ## 🌟 Features
 
 ### 🎮 Intuitive Game Interface
