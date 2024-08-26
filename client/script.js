@@ -1,5 +1,3 @@
-// Filename: client/script.js
-
 const websocket = new WebSocket('ws://localhost:6789');
 const boardElement = document.getElementById('board');
 const currentPlayerElement = document.getElementById('current-player');
@@ -107,6 +105,14 @@ websocket.onmessage = function (event) {
     } else {
         updateBoard(data.board);
         currentPlayerElement.textContent = data.turn;
+
+        // Update move history with the last move
+        const lastMove = data.lastMove; // Expecting lastMove to be sent from the server
+        console.log("Last move received", lastMove);  // Debugging output
+
+        if (lastMove && lastMove.piece.piece) {  // Ensuring piece data is present
+            addMoveToHistory(lastMove);
+        }
     }
 };
 

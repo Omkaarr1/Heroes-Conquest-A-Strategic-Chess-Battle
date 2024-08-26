@@ -1,5 +1,3 @@
-# Filename: server/websocket_server.py
-
 import asyncio
 import websockets
 import json
@@ -17,30 +15,38 @@ class WebSocketServer:
             piece = data.get('piece')
             move = data.get('move')
 
-            # Validate the player's move
             if self.game_logic.validate_move(piece, move):
                 self.game_logic.apply_move(piece, move)
+                lastMove = {
+                    'player': 'A',
+                    'piece': piece,
+                    'move': move
+                }
                 self.game_logic.switch_turn()
 
                 if self.game_logic.current_turn == 'B':
                     ai_move = self.ai.make_move()
                     if ai_move:
-                        self.game_logic.apply_move(
-                            {'piece': self.game_logic.board[ai_move['row']][ai_move['col']],
-                             'row': ai_move['row'],
-                             'col': ai_move['col']},
-                            ai_move['move']
-                        )
+                        applied_piece = {
+                            'piece': self.game_logic.board[ai_move['row']][ai_move['col']],
+                            'row': ai_move['row'],
+                            'col': ai_move['col']
+                        }
+                        self.game_logic.apply_move(applied_piece, ai_move['move'])
+                        lastMove = {
+                            'player': 'B',
+                            'piece': applied_piece,
+                            'move': ai_move['move']
+                        }
                     self.game_logic.switch_turn()
 
-                # Send updated game state to the client
                 state, turn = self.game_logic.get_game_state()
                 await websocket.send(json.dumps({
                     'board': state,
-                    'turn': turn
+                    'turn': turn,
+                    'lastMove': lastMove  # Send the last move to the client
                 }))
             else:
-                # Send invalid move message to the client
                 await websocket.send(json.dumps({
                     'invalid_move': True,
                     'message': 'Invalid move. Please try again.'
