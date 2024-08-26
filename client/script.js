@@ -116,6 +116,54 @@ websocket.onmessage = function (event) {
     }
 };
 
+function checkForWinner() {
+    const board = Array.from(boardElement.children).map(cell => cell.textContent);
+
+    const playerAPieces = board.filter(piece => piece.startsWith('A-'));
+    const playerBPieces = board.filter(piece => piece.startsWith('B-'));
+
+    const playerAHasReachedEnd = board.slice(20).some(piece => piece.startsWith('A-'));
+    const playerBHasReachedEnd = board.slice(0, 5).some(piece => piece.startsWith('B-'));
+
+    if (playerBPieces.length === 0 || playerAHasReachedEnd) {
+        announceWinner('Player A');
+    } else if (playerAPieces.length === 0 || playerBHasReachedEnd) {
+        announceWinner('AI');
+    }
+}
+
+function announceWinner(winner) {
+    const winnerMessageElement = document.getElementById('winner-message');
+    const winnerAnnouncementElement = document.getElementById('winner-announcement');
+    
+    winnerMessageElement.textContent = `${winner} wins!`;
+    winnerAnnouncementElement.style.display = 'block';
+}
+
+websocket.onmessage = function (event) {
+    console.log("Message received from server", event.data);
+    const data = JSON.parse(event.data);
+
+    if (data.invalid_move) {
+        alert(data.message);
+    } else {
+        updateBoard(data.board);
+        currentPlayerElement.textContent = data.turn;
+
+        // Update move history with the last move
+        const lastMove = data.lastMove;
+        console.log("Last move received", lastMove);
+
+        if (lastMove && lastMove.piece.piece) {
+            addMoveToHistory(lastMove);
+        }
+
+        // Check for a winner after every move
+        checkForWinner();
+    }
+};
+
+
 websocket.onopen = function() {
     console.log("WebSocket connection opened");
 };
